@@ -1,0 +1,581 @@
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ──────────────────────────────
+   Intro overlay
+   ────────────────────────────── */
+   #intro{
+    position:fixed;
+    inset:0;
+    background:#1d1d1d;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;                 /* above everything else        */
+    animation:introOut 2.8s forwards ease-in;
+    pointer-events:none;          /* 👈 clicks pass right through */
+
+  }
+  
+  
+  .intro-logo{
+    width:100px;                  /* tweak as needed              */
+    opacity:0;
+    animation:logoIn 2.8s forwards ease-out;
+  }
+  
+  /* Logo: fade-in, hold, slide-up + fade-out */
+  @keyframes logoIn{
+    0%   {opacity:0; transform:translateY(30px);}
+    25%  {opacity:1; transform:none;}
+    60%  {opacity:1;}
+    100% {opacity:0; transform:translateY(-60px);}
+  }
+  
+  /* Overlay: stay opaque until logo is almost gone, then fade */
+  @keyframes introOut{
+    0%,60% {opacity:1;}
+    100%   {opacity:0; visibility:hidden;}
+  }
+  
+  
+  /* ──────────────────────────────
+     Site content reveal
+     ────────────────────────────── */
+  .site-wrapper{
+    opacity:0;
+    transform:translateY(40px);
+    animation:siteIn 1.2s ease-out 2s forwards;
+    /*           ^ duration      ^ delay matches logo timing     */
+  }
+  
+  @keyframes siteIn{
+    to{opacity:1; transform:none;}
+  }
+  
+  
+  /* ──────────────────────────────
+     Respect “Reduce motion”
+     ────────────────────────────── */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+      animation:none !important;
+      transition:none !important;
+    }
+  }
+
+  
+/* start hidden, shifted down */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .6s ease-out, transform .6s ease-out;
+}
+
+/* when the element enters the viewport */
+.reveal--visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* sit behind everything but never create scrollbars */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:url("images/background.png") no-repeat;
+  background-size:120% auto;      /* still zoomed in */
+  background-position:-200px 100px;    /* ← move 80 px left, 0 px down */
+
+  /* equivalents you can play with */
+  /* background-position:calc(50% - 5vw) top;  shift 5 vw left from center */
+  /* background-position-x:-5%;               use % instead of px          */
+
+  z-index:-1;
+  pointer-events:none;
+}
+
+
+
+body{
+  background-color: #1d1d1d;
+  font-family: 'Outfit';
+  font-size: 1rem;
+  font-weight: 300;
+  color:white;
+  margin: 0;
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;          /* stays 100% *including* padding now   */
+  padding: 1rem;        /* or separate left/right if you like   */
+
+  display: flex;
+  gap: 20px;
+
+  align-items: center;
+
+  background: transparent;
+  transition: background-color 0.25s ease;   /* smooth fade */
+  z-index: 1000;
+}
+
+/* color once we’ve scrolled past the threshold */
+.navbar.scrolled{
+  background: #1d1d1d;
+}
+
+.navbar .nav-item:first-child{
+  margin-right: auto;
+}
+
+.image-logo{
+  width: 120px;
+}
+
+.navbar{
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar, a:hover{
+  color: #EE7954;
+}
+
+.image-background{
+  width:100%;
+  position: absolute;
+  top: 100px;
+  z-index: -100;
+}
+
+.container{
+  width: 60%;
+  margin-inline: auto;
+}
+
+.hr-left{
+  width: 50%;
+  margin-left:0;
+}
+
+.hr-right{
+  width: 50%;
+  margin-right:0;
+}
+
+.hero{
+  margin-top: 200px;
+  margin-bottom: 300px;
+}
+
+.hero-title{
+  font-size: 4.5rem;
+}
+
+.hero-title-first{
+  color:#EE7954;
+}
+
+.hero-title-second{
+  color:#EE7954;
+  font-weight: 500;
+}
+
+.hero-desc{
+  margin-top: 40px;
+  width: 700px;
+  font-size: 1.5rem;
+}
+
+.black-bg{
+  background-color: rgba(0, 0, 0, 0.4);;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.about{
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+#about{
+  scroll-margin-top: 250px; 
+}
+
+.about-title{
+  font-size: 3rem;
+  text-align: center;
+  color: #EE7954;
+}
+
+.about-desc{
+  font-size: 1.5rem;
+  width: 800px;
+  text-align: center;
+}
+
+.team{
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+#team{
+  scroll-margin-top: 100px; 
+}
+
+.team-title{
+  font-size: 3rem;
+  color: #EE7954;
+  margin-bottom: 20px;
+}
+
+.team-desc{
+  font-size: 1.5rem;
+  width: 800px;
+  margin-bottom: 100px;
+}
+
+.team-container{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly; /* equal space before, between, after items */
+  align-items: center; 
+}
+
+.teammate{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+
+.teammate-name{
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.teammate-title{
+  font-size: 1.5rem;
+}
+
+.image-teammate{
+  width: 200px;
+}
+
+.teammate-contact{
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.image-teammate-contact{
+  width: 50px;
+}
+
+.portfolio{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+#portfolio{
+  scroll-margin-top: 250px; 
+}
+
+.portfolio-title{
+  font-size: 3rem;
+  color: #EE7954;
+  margin-bottom: 20px;
+}
+
+.portfolio-desc{
+  font-size: 1.5rem;
+  width: 800px;
+}
+
+
+.contact{
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 300px;
+}
+
+#contact{
+  scroll-margin-top: 200px; 
+}
+
+.contact-title{
+  font-size: 3rem;
+  text-align: center;
+  color: #EE7954;
+}
+
+.contact-desc{
+  font-size: 1.5rem;
+  width: 800px;
+  text-align: center;
+}
+
+.image-contact{
+  width: 100px;
+  margin-top: 20px;
+}
+
+.email{
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+}
+
+.email:hover{
+  background-color: #EE7954;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+
+.footer{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 200px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+.footer .footer-item:first-child{
+  margin-right: auto;
+}
+
+
+
+
+/* responsive design */
+
+
+@media (max-width: 1439px){
+  .hero-title{
+    font-size: 3.5rem;
+  }
+  
+  .hero-desc{
+    font-size: 1.5rem;
+    width: 600px;
+  }
+
+  .about-title{
+    font-size: 2.2rem;
+  }
+  
+  .about-desc{
+    font-size: 1.2rem;
+    width: 620px;
+  }
+
+  .team-title{
+    font-size: 2.2rem;
+  }
+
+  .team-desc{
+    font-size: 1.2rem;
+    width: 620px;
+  }
+
+  .teammate-name{
+    font-size: 1.4rem;
+  }
+  
+  .teammate-title{
+    font-size: 1.2rem;
+  }
+  
+  .image-teammate{
+    width: 150px;
+  }
+  
+  .image-teammate-contact{
+    width: 30px;
+  }
+
+  .portfolio-title{
+    font-size: 2.2rem;
+  }
+  
+  .portfolio-desc{
+    font-size: 1.2rem;
+    width: 620px;
+  }
+
+  .contact-title{
+    font-size: 2.2rem;
+  }
+  
+  .contact-desc{
+    font-size: 1.2rem;
+    width: 620px;
+  }
+  
+  .image-contact{
+    width: 60px;
+  }
+  
+  .email{
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero{
+    margin-bottom: 200px;
+  }
+
+  .teammate{
+    gap: 10px;
+  }
+  
+  .teammate-name{
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 950px) {
+  .hero-title{
+    font-size: 3rem;
+  }
+  
+  .hero-desc{
+    font-size: 1.2rem;
+    width: 500px;
+  }
+
+  .about-title{
+    font-size: 1.8rem;
+  }
+  
+  .about-desc{
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .team-title{
+    font-size: 1.8rem;
+  }
+
+  .team-desc{
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .teammate-name{
+    font-size: 1rem;
+  }
+  
+  .teammate-title{
+    font-size: 1rem;
+  }
+  
+  .team-container{
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .teammate{
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    text-align: center ;
+  }
+
+  .teammate-contact{
+    justify-content: center;
+  }
+
+  .image-teammate-contact{
+    width: 40px;
+  }
+  
+  .image-teammate{
+    width: 180px;
+  }
+  
+  .image-teammate-contact{
+    width: 20px;
+  }
+
+  .portfolio-title{
+    font-size: 1.8rem;
+  }
+  
+  .portfolio-desc{
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .contact-title{
+    font-size: 1.8rem;
+  }
+  
+  .contact-desc{
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  .image-contact{
+    width: 40px;
+  }
+  
+  .email{
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .footer{
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 780px) {
+  .hero-desc{
+    width:100%;
+  }
+
+  .footer{
+    font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title{
+    font-size: 2rem;
+  }
+}
