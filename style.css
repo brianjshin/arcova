@@ -644,8 +644,8 @@ a {
   /* Center and zoom background more on small screens */
   body::before{
     /* Add breathing room around the image */
-    inset: 50px;               /* visual padding */
-    background-size: 170% auto; /* zoom level */
+    inset: 200px 0px 0px 0px;               /* visual padding */
+    background-size: 185% auto; /* zoom level */
     background-position: center top;
   }
   .hero-desc{
