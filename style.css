@@ -475,6 +475,10 @@ a {
 }
 
 @media (max-width: 950px) {
+  .container{
+    width: 85%;
+  }
+  
   .hero-title{
     font-size: 3rem;
   }
