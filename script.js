@@ -55,3 +55,24 @@ const io = new IntersectionObserver((entries, observer) => {
 revealEls.forEach(el => io.observe(el));
 
 
+/* ====== M O B I L E  •  M E N U ====== */
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+if (hamburger){
+  hamburger.addEventListener('click', () => {
+    const open = nav.classList.toggle('navbar--open');
+    hamburger.setAttribute('aria-expanded', String(open));
+  });
+
+  // Close on link click (useful on mobile after navigating)
+  navLinks?.querySelectorAll('a').forEach(a =>{
+    a.addEventListener('click', () => {
+      if (nav.classList.contains('navbar--open')){
+        nav.classList.remove('navbar--open');
+        hamburger.setAttribute('aria-expanded','false');
+      }
+    });
+  });
+}
+
