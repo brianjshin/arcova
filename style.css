@@ -641,6 +641,11 @@ a {
 }
 
 @media (max-width: 780px) {
+  /* Center and zoom background more on small screens */
+  body::before{
+    background-size: 200% auto;
+    background-position: center center;
+  }
   .hero-desc{
     width:100%;
   }
