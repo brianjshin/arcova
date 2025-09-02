@@ -643,7 +643,9 @@ a {
 @media (max-width: 780px) {
   /* Center and zoom background more on small screens */
   body::before{
-    background-size: 200% auto;
+    /* Add breathing room around the image */
+    inset: 50px;               /* visual padding */
+    background-size: 170% auto; /* zoom level */
     background-position: center top;
   }
   .hero-desc{
