@@ -644,7 +644,7 @@ a {
   /* Center and zoom background more on small screens */
   body::before{
     background-size: 200% auto;
-    background-position: center center;
+    background-position: center top;
   }
   .hero-desc{
     width:100%;
