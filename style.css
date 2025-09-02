@@ -256,10 +256,12 @@ a {
 }
 
 .team-container{
-  display:flex;
-  flex-direction: row;
-  justify-content: space-evenly; /* equal space before, between, after items */
-  align-items: center; 
+  /* Use grid for responsive 3 → 2 → 1 layout */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  align-items: start;
+  justify-items: start; /* left-align cards within columns for consistent columns */
 }
 
 .teammate{
@@ -267,6 +269,7 @@ a {
   flex-direction: row;
   align-items: center;
   gap: 40px;
+  width: 100%; /* expand to column width so left edges align */
 }
 
 .teammate-name{
@@ -453,7 +456,7 @@ a {
   }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1750px) {
   .hero{
     margin-bottom: 200px;
   }
@@ -464,6 +467,11 @@ a {
   
   .teammate-name{
     font-size: 1.2rem;
+  }
+
+  /* Medium screens: 2 columns (2 + 1 layout) */
+  .team-container{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -503,8 +511,9 @@ a {
     font-size: 1rem;
   }
   
+  /* Small screens: 1 column */
   .team-container{
-    flex-direction: column;
+    grid-template-columns: 1fr;
     justify-content: center;
     gap: 20px;
   }
