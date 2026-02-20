@@ -183,9 +183,212 @@ body {
   padding: 0;
 }
 
+/* Desktop nav links aligned to the right with spacing */
+.nav-links{
+  display: flex;
+  align-items: center;
+  gap: 24px;                 /* spacing between menu items */
+}
+
+.nav-links a{
+  padding: 4px 6px;          /* small click padding */
+}
+
+/* Hide hamburger by default (desktop) */
+.hamburger{
+  display: none;
+  background: none;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+  color: #ffffff;              /* white by default */
+  transition: color .2s ease;
+}
+
+.hamburger .line{
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  margin: 5px 0;
+}
+
+/* Turn hamburger orange when menu is open */
+.navbar.navbar--open .hamburger,
+.hamburger[aria-expanded="true"]{
+  color: #EE7954;
+}
+
 a {
   text-decoration: none;
+<<<<<<< HEAD
   color: var(--color-white);
+=======
+  color: white;
+}
+
+/* hover color only for links in navbar */
+.navbar a:hover{
+  color: #EE7954;
+}
+
+.image-background{
+  width:100%;
+  position: absolute;
+  top: 100px;
+  z-index: -100;
+}
+
+.container{
+  width: 60%;
+  margin-inline: auto;
+}
+
+.hr-left{
+  width: 50%;
+  margin-left:0;
+}
+
+.hr-right{
+  width: 50%;
+  margin-right:0;
+}
+
+.hero{
+  margin-top: 200px;
+  margin-bottom: 300px;
+}
+
+.hero-title{
+  font-size: 4.5rem;
+}
+
+.hero-title-first{
+  color:#EE7954;
+}
+
+.hero-title-second{
+  color:#EE7954;
+  font-weight: 500;
+}
+
+.hero-desc{
+  margin-top: 40px;
+  width: 800px;
+  font-size: 1.5rem;
+}
+
+.black-bg{
+  background-color: rgba(0, 0, 0, 0.4);;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.about{
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+#about{
+  scroll-margin-top: 250px; 
+}
+
+.about-title{
+  font-size: 3rem;
+  text-align: center;
+  color: #EE7954;
+}
+
+.about-desc{
+  font-size: 1.5rem;
+  width: 800px;
+  text-align: center;
+}
+
+.team{
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+#team{
+  scroll-margin-top: 100px; 
+}
+
+.team-title{
+  font-size: 3rem;
+  color: #EE7954;
+  margin-bottom: 20px;
+}
+
+.team-desc{
+  font-size: 1.5rem;
+  width: 900px;
+  margin-bottom: 100px;
+}
+
+.team-container{
+  /* Use grid for responsive 3 → 2 → 1 layout */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  align-items: center;
+  justify-items: center; /* center cards within columns */
+}
+
+.teammate{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+
+.teammate-name{
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.teammate-title{
+  font-size: 1.5rem;
+}
+
+.image-teammate{
+  width: 200px;
+}
+
+.teammate-contact{
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.image-teammate-contact{
+  width: 50px;
+}
+
+.portfolio{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+#portfolio{
+  scroll-margin-top: 250px; 
+}
+
+.portfolio-title{
+  font-size: 3rem;
+  color: #EE7954;
+  margin-bottom: 20px;
+}
+
+.portfolio-desc{
+  font-size: 1.5rem;
+  width: 800px;
+>>>>>>> 59b9f18442ac1aeaf54d6c0877cacc0ca20c752c
 }
 
 
@@ -218,6 +421,7 @@ a {
   width: 120px;
 }
 
+<<<<<<< HEAD
 .nav-links {
   display: flex;
   align-items: center;
@@ -680,6 +884,24 @@ section[id] {
 @media (max-width: 1100px) {
   .pillar-grid {
     grid-template-columns: repeat(2, 1fr);
+=======
+@media (max-width: 1750px) {
+  .hero{
+    margin-bottom: 200px;
+  }
+
+  .teammate{
+    gap: 10px;
+  }
+  
+  .teammate-name{
+    font-size: 1.2rem;
+>>>>>>> 59b9f18442ac1aeaf54d6c0877cacc0ca20c752c
+  }
+
+  /* Medium screens: 2 columns (2 + 1 layout) */
+  .team-container{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -688,15 +910,30 @@ section[id] {
    Responsive — 950px (mobile)
    ────────────────────────────── */
 @media (max-width: 950px) {
+<<<<<<< HEAD
   :root {
     --space-section: 80px;
     --container-width: 88%;
+=======
+  .container{
+    width: 85%;
+  }
+  
+  .hero-title{
+    font-size: 3rem;
+  }
+  
+  .hero-desc{
+    font-size: 1.2rem;
+    width: 500px;
+>>>>>>> 59b9f18442ac1aeaf54d6c0877cacc0ca20c752c
   }
 
   /* Show hamburger, hide desktop nav and CTA */
   .hamburger { display: inline-block; }
   .nav-cta { display: none; }
 
+<<<<<<< HEAD
   .nav-links {
     position: absolute;
     top: 60px;
@@ -711,6 +948,57 @@ section[id] {
     border-radius: 8px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     z-index: 1100;
+=======
+  /* Mobile: show hamburger, hide links until opened */
+  .hamburger{ display: inline-block; }
+
+  .nav-links{
+    position: absolute;
+    top: 60px;               /* below fixed navbar */
+    right: 12px;
+    display: none;           /* hidden until menu opened */
+    flex-direction: column;
+    align-items: flex-start;  /* left-align items inside panel */
+    gap: 16px;
+    padding: 12px 16px;
+    background: rgba(29,29,29,0.98);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    z-index: 1100;
+  }
+
+  .navbar.navbar--open .nav-links{ display: flex; }
+
+  /* Make links left-aligned and easy to tap */
+  .nav-links a{
+    width: 100%;
+    text-align: left;
+  }
+
+  .team-title{
+    font-size: 1.8rem;
+  }
+
+  .team-desc{
+    font-size: 1rem;
+    width: 100%;
+  }
+
+  .teammate-name{
+    font-size: 1rem;
+  }
+  
+  .teammate-title{
+    font-size: 1rem;
+  }
+  
+  /* Small screens: 1 column */
+  .team-container{
+    grid-template-columns: 1fr;
+    justify-content: center;
+    gap: 20px;
+>>>>>>> 59b9f18442ac1aeaf54d6c0877cacc0ca20c752c
   }
 
   .navbar.navbar--open .nav-links { display: flex; }
@@ -720,6 +1008,7 @@ section[id] {
     text-align: left;
   }
 
+<<<<<<< HEAD
   .section-heading {
     font-size: 2rem;
   }
@@ -791,4 +1080,50 @@ section[id] {
   .footer {
     font-size: 0.7rem;
   }
+=======
+  .contact-title{
+    font-size: 1.8rem;
+  }
+  
+  .contact-desc{
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  .image-contact{
+    width: 40px;
+  }
+  
+  .email{
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .footer{
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 780px) {
+  /* Center and zoom background more on small screens */
+  body::before{
+    /* Add breathing room around the image */
+    inset: 100px 0px 0px 0px;               /* visual padding */
+    background-size: 185% auto; /* zoom level */
+    background-position: center top;
+  }
+  .hero-desc{
+    width:100%;
+  }
+
+  .footer{
+    font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title{
+    font-size: 2rem;
+  }
+>>>>>>> 59b9f18442ac1aeaf54d6c0877cacc0ca20c752c
 }
