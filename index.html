@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Arcova is a U.S.–Korea investment platform backing defense, AI, and robotics companies with institutional capital and industrial execution capability." />
   <title>Arcova</title>
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -16,113 +16,263 @@
   <div id="intro">
     <img src="images/logo-intro.png" alt="Arcova logo" class="intro-logo">
   </div>
+
   <div class="navbar">
-    <a href="index.html" class="nav-item"><img src="images/logo.png" class="image-logo"></a>
-    <a href="#about" class="nav-item">About</a>
-    <a href="#team" class="nav-item">Team</a>
-    <a href="#portfolio" class="nav-item">Portfolio</a>
-    <a href="#contact" class="nav-item">Contact</a>
+    <a href="index.html" class="nav-item"><img src="images/logo.png" class="image-logo" alt="Arcova"></a>
+    <div class="nav-links" id="primary-navigation">
+      <a href="#execution" class="nav-item">Approach</a>
+      <a href="#focus" class="nav-item">Focus</a>
+      <a href="#team" class="nav-item">Team</a>
+      <a href="#contact" class="nav-item">Contact</a>
+    </div>
+    <a href="mailto:brian@arcova.vc" class="nav-cta">Contact Us</a>
+    <button class="hamburger" aria-label="Menu" aria-controls="primary-navigation" aria-expanded="false">
+      <span class="line"></span>
+      <span class="line"></span>
+      <span class="line"></span>
+    </button>
   </div>
 
   <div class="site-wrapper">
-      <section class="reveal">
-        <div class="container hero">
-          <div class="hero-title"> 
-            <div class="hero-title-first"> Igniting bold arcs of </div> 
-            <div class="hero-title-second">innovation</div>
-          <div class="hero-desc">
-             Pioneering dual-use technologies through strategic US-Korea cross-border investments that strengthen national resilience and drive industrial transformation
-          </div>
+
+    <!-- ── HERO ── -->
+    <section class="hero reveal">
+      <div class="container">
+        <div class="hero-definition">
+          <span class="hero-definition__word">arcova</span>
+          <span class="hero-definition__phonetic">(är-kō-və)</span>
+          <span class="hero-definition__pos">n.</span>
+          <span class="hero-definition__etymology">
+            [from arc, a spanning connection, and nova, Latin for “new star”] 
+          </span>
         </div>
-      </section>
+        <p class="hero-subhead">
+          A bridge across continents helping exceptional companies ignite.
+        </p>
+        <div class="cta-group">
+          <a href="mailto:brian@arcova.vc" class="btn btn--primary">Contact Us</a>
+          <a href="Arcova_Intro.pdf" class="btn btn--ghost" download>Download Overview</a>
+        </div>
+      </div>
+    </section>
 
 
-      <div class="black-bg">
-        <hr class="hr-right"> 
-        <section id="about" class= "reveal">
-          <div class="container about">
-            <div class="about-title">Shaping the future of dual-use innovation</div>
-            <div class="about-desc">
-              We identify and nurture technologies that strengthen national capabilities while driving commercial success across critical industries.We identify and nurture technologies that strengthen national capabilities while driving commercial success across critical industries.
-            </div>
-          </div>
-        </section>
-        <hr class="hr-left">
-      </div>
-       
-  
-      <section id="team" class="team reveal">
-        <div class="container team">
-          <div class="team-title">Meet our team</div>
-          <div class="team-desc">Experienced investors and operators with deep expertise in dual-use technologies, defense innovation, and cross-border partnerships.</div>
-          <div class="team-container">
-            <div class="teammate">
-              <img src="images/eric.png" class="image-teammate">
-              <div class="teammate-details">
-                <div class="teammate-name">Eric Jackson</div>
-                <div class="teammate-title"> Partner</div>
-                <div class="teammate-contact">
-                  <a href="" target="_blank"><img src="images/linkedin.png" class="image-teammate-contact"></a>
-                  <a href="mailto:"><img src="images/mail.png" class="image-teammate-contact"></a>
-                </div>
-              </div>
-            </div>
-    
-            <div class="teammate">
-              <img src="images/brian.png" class="image-teammate">
-              <div class="teammate-details">
-                <div class="teammate-name">Brian Shin</div>
-                <div class="teammate-title"> Partner</div>
-                <div class="teammate-contact">
-                  <a href="https://www.linkedin.com/in/brian-j-shin/" target="_blank"><img src="images/linkedin.png" class="image-teammate-contact"></a>
-                  <a href="mailto:brianjshin110@gmail.com"><img src="images/mail.png" class="image-teammate-contact"></a>
-                </div>
-              </div>
-            </div>
+    <!-- ── THE CONSTRAINT IS ACCESS ── -->
+    <div class="black-bg">
+      <section id="constraint" class="section reveal">
+        <div class="container">
+          <span class="section-label">Scaling Requires More Than Capital</span>
+          <div class="section-body-text">
+            <p>In defense, AI, and robotics, moving from breakthrough to production has become the defining challenge.</p>
+            <p>Customers expect operational readiness.</p>
+            <p>Manufacturing and deployment timelines compress.</p>
+            <p>Credibility must be established early.</p>
+            <p>Capital alone does not solve this.</p>
           </div>
         </div>
       </section>
-  
-      <div class="black-bg">
-        <section id="portfolio" class="reveal">
-          <div class="container portfolio">
-            <div class="portfolio-title">Portfolio</div>
-            <div class="portfolio-desc">
-              We partner with innovative companies developing breakthrough technologies that serve both commercial and national security markets.
-            </div>
+    </div>
+
+
+    <!-- ── COMBINING ACCESS WITH EXECUTION ── -->
+    <section id="execution" class="section reveal">
+      <div class="container">
+        <span class="section-label">Combining Access with Execution</span>
+        <h2 class="section-heading">Structured at the intersection of relationships, capital, and industrial capability.</h2>
+        <div class="pillar-grid">
+
+          <div class="pillar-card reveal">
+            <h3 class="pillar-card__label">Access</h3>
+            <p class="pillar-card__body">
+              Founder-level, trust-based relationships embedded in early capital formation across mission-critical and frontier technologies.
+            </p>
           </div>
-        </section>
+
+          <div class="pillar-card reveal">
+            <h3 class="pillar-card__label">Institutional Capital</h3>
+            <p class="pillar-card__body">
+              Structured investing in partnership with IMM Investment, one of Korea's leading private investment firms.
+            </p>
+          </div>
+
+          <div class="pillar-card reveal">
+            <h3 class="pillar-card__label">Industrial Execution</h3>
+            <p class="pillar-card__body">
+              Operational alignment and aerospace-grade manufacturing capability through Kencoa Aerospace across the United States and Korea.
+            </p>
+          </div>
+
+        </div>
       </div>
-  
-      
-      <section id="contact" class="reveal">
-        <div class="container contact">
-          <div class="contact-title">Let’s build the future together</div>
-          <div class="contact-desc">
-            Whether you're a founder with breakthrough dual-use technology or a strategic partner looking to collaborate, we'd love to hear from you.
+    </section>
+
+
+    <!-- ── THE KOREA ADVANTAGE ── -->
+    <div class="black-bg">
+      <section id="korea" class="section reveal">
+        <div class="container">
+          <span class="section-label">The Korea Advantage</span>
+          <p class="section-lead">
+            The United States and Korea represent one of the most strategically aligned industrial corridors within the allied defense ecosystem. Arcova operates within this alignment.
+          </p>
+          <div class="pillar-grid">
+
+            <div class="pillar-card reveal">
+              <h3 class="pillar-card__label">Aligned Capital</h3>
+              <p class="pillar-card__body">
+                Deep relationships across leading institutional and strategic partners within Korea's investment landscape.
+              </p>
+            </div>
+
+            <div class="pillar-card reveal">
+              <h3 class="pillar-card__label">Industrial Depth</h3>
+              <p class="pillar-card__body">
+                Established aerospace manufacturing capacity supporting complex, production-critical programs across both markets.
+              </p>
+            </div>
+
+            <div class="pillar-card reveal">
+              <h3 class="pillar-card__label">Allied Connectivity</h3>
+              <p class="pillar-card__body">
+                Strategic pathways for capital, customers, and co-production within a trusted, allied framework.
+              </p>
+            </div>
+
           </div>
-          <a href="mailto:contact@arcovaventures.com" >
-            <button class="email">contact@arcovaventures.com</button>
-          </a> 
         </div>
       </section>
-    
-      
-  
-      <div class="footer">
-        <div class="footer-item"> © 2025 Arcova Ventures. All rights reserved. </div>
-        <a class="footer-item" > Privacy policy </a>
-        <a class="footer-item"> Terms of service </a>
+    </div>
+
+
+    <!-- ── INVESTMENT FOCUS ── -->
+    <section id="focus" class="section reveal">
+      <div class="container">
+        <span class="section-label">Investment Focus</span>
+        <h2 class="section-heading">Where We Invest</h2>
+        <div class="pillar-grid">
+
+          <div class="pillar-card reveal">
+            <h3 class="pillar-card__label">Defense Technology</h3>
+            <p class="pillar-card__body">
+              Mission-critical platforms, autonomy, and software-enabled systems shaping the future of defense.
+            </p>
+          </div>
+
+          <div class="pillar-card reveal">
+            <h3 class="pillar-card__label">AI &amp; Compute</h3>
+            <p class="pillar-card__body">
+              Foundational models, applied AI platforms, and the infrastructure enabling scalable, real-world deployment.
+            </p>
+          </div>
+
+          <div class="pillar-card reveal">
+            <h3 class="pillar-card__label">Robotics &amp; Advanced Manufacturing</h3>
+            <p class="pillar-card__body">
+              Intelligent machines and production technologies reshaping global supply chains.
+            </p>
+          </div>
+
+        </div>
       </div>
-     
-   
+    </section>
+
+
+    <!-- ── TEAM ── -->
+    <div class="black-bg">
+      <section id="team" class="section reveal">
+        <div class="container">
+          <span class="section-label">Team</span>
+          <h2 class="section-heading">The Partners</h2>
+
+          <div class="team-grid">
+
+            <div class="team-card" data-member="eric" role="button" tabindex="0" aria-expanded="false">
+              <img src="images/eric.png" alt="Eric Jackson" class="team-card__photo">
+              <p class="team-card__name">Eric Jackson</p>
+              <p class="team-card__role">Partner</p>
+              <div class="team-card__links">
+                <a href="https://www.linkedin.com/in/ericmj/" target="_blank" rel="noopener">
+                  <img src="images/linkedin.png" alt="Eric Jackson on LinkedIn">
+                </a>
+                <a href="mailto:ejackson@kencoaaerospace.com">
+                  <img src="images/mail.png" alt="Email Eric Jackson">
+                </a>
+              </div>
+            </div>
+
+            <div class="team-card" data-member="kenneth" role="button" tabindex="0" aria-expanded="false">
+              <img src="images/kenny.png" alt="Kenneth Lee" class="team-card__photo">
+              <p class="team-card__name">Kenneth Lee</p>
+              <p class="team-card__role">Partner</p>
+              <div class="team-card__links">
+                <a href="https://www.linkedin.com/in/kencoaaerospace/" target="_blank" rel="noopener">
+                  <img src="images/linkedin.png" alt="Kenneth Lee on LinkedIn">
+                </a>
+                <a href="mailto:kenny@kencoaaerospace.com">
+                  <img src="images/mail.png" alt="Email Kenneth Lee">
+                </a>
+              </div>
+            </div>
+
+            <div class="team-card" data-member="brian" role="button" tabindex="0" aria-expanded="false">
+              <img src="images/brian.png" alt="Brian Shin" class="team-card__photo">
+              <p class="team-card__name">Brian Shin</p>
+              <p class="team-card__role">Partner</p>
+              <div class="team-card__links">
+                <a href="https://www.linkedin.com/in/brian-j-shin/" target="_blank" rel="noopener">
+                  <img src="images/linkedin.png" alt="Brian Shin on LinkedIn">
+                </a>
+                <a href="mailto:brian@arcova.vc">
+                  <img src="images/mail.png" alt="Email Brian Shin">
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bio panel — hidden by default, populated by JS on card click -->
+          <div class="bio-panel" id="bio-panel" aria-hidden="true">
+            <div class="bio-panel__inner">
+              <button class="bio-panel__close" aria-label="Close bio">&#x2715;</button>
+              <p class="bio-panel__name"></p>
+              <p class="bio-panel__role"></p>
+              <p class="bio-panel__text"></p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+
+    <!-- ── CONTACT ── -->
+    <section id="contact" class="section contact-section reveal">
+      <div class="container">
+        <span class="section-label">Start the Conversation</span>
+        <h2 class="section-heading">
+          Arcova partners with founders building production-critical technologies and with long-term institutional capital seeking exposure to defense and industrial innovation.
+        </h2>
+        <div class="cta-group">
+          <a href="mailto:brian@arcova.vc" class="btn btn--primary">Contact Us</a>
+          <a href="Arcova_Intro.pdf" class="btn btn--ghost" download>Download Arcova Overview</a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+      <a href="index.html">
+        <img src="images/logo.png" class="footer-logo" alt="Arcova">
+      </a>
+      <span class="footer-item">© 2025 Arcova Ventures. All rights reserved.</span>
+      <a class="footer-item" href="#">Privacy Policy</a>
+      <a class="footer-item" href="#">Terms of Service</a>
+    </footer>
+
   </div>
 
-
-  
-
-
   <script src="script.js"></script>
-  
+
 </body>
 </html>
