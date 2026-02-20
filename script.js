@@ -76,7 +76,6 @@ if (hamburger){
   });
 }
 
-<<<<<<< HEAD
 
 /* ====== T E A M  •  B I O  •  P A N E L ====== */
 const bioData = {
@@ -175,5 +174,3 @@ if (bioPanel) {
   bioClose.addEventListener('click', closeBio);
 }
 
-=======
->>>>>>> 59b9f18442ac1aeaf54d6c0877cacc0ca20c752c
