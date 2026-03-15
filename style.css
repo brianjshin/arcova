@@ -92,14 +92,14 @@ html {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  animation: introOut 2.8s forwards ease-in;
+  animation: introOut 1.4s forwards ease-in;
   pointer-events: none;
 }
 
 .intro-logo {
   width: 100px;
   opacity: 0;
-  animation: logoIn 2.8s forwards ease-out;
+  animation: logoIn 1.4s forwards ease-out;
 }
 
 @keyframes logoIn {
