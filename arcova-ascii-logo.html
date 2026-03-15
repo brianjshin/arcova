@@ -11,7 +11,10 @@
   (function(){
     var el = document.getElementById('arcova-ascii');
     try {
-      if (window.parent.innerWidth < 768) el.style.fontSize = '4px';
+      if (window.parent.innerWidth < 768) {
+        el.style.fontSize = '4px';
+        document.getElementById('arcova-ascii-container').style.padding = '0';
+      }
     } catch(e) {}
   })();
 </script>
