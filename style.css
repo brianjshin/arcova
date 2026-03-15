@@ -785,7 +785,8 @@ section[id] {
   }
 
   .hero-ascii-iframe {
-    max-width: 320px;
+    width: 100%;
+    max-width: 100%;
   }
 
 .hero-definition__word {
