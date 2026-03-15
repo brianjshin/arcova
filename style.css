@@ -405,9 +405,36 @@ section[id] {
    Hero
    ────────────────────────────── */
 .hero {
-  padding-top: 160px;
-  padding-bottom: var(--space-section);
+  padding-top: 80px;
+  padding-bottom: 48px;
+  background: var(--color-bg);
 }
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-text {
+  min-width: 0;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+.hero-ascii-iframe {
+  width: 100%;
+  aspect-ratio: 5 / 6;
+  background: transparent;
+  border: none;
+}
+
 
 .hero-definition {
   margin-bottom: 0;
@@ -516,18 +543,39 @@ section[id] {
   cursor: pointer;
 }
 
+.team-card__photo-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.team-card__photo-wrap::after {
+  content: 'View Bio';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--color-accent);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.team-card:hover .team-card__photo-wrap::after {
+  opacity: 1;
+}
+
 .team-card__photo {
   width: 200px;
   height: 260px;
   object-fit: cover;
   border-radius: 4px;
-  filter: grayscale(20%);
-  transition: filter 0.25s ease;
-}
-
-.team-card:hover .team-card__photo,
-.team-card.active .team-card__photo {
-  filter: grayscale(0%);
+  display: block;
 }
 
 .team-card__name {
@@ -728,7 +776,19 @@ section[id] {
     padding-top: 120px;
   }
 
-  .hero-definition__word {
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    order: -1;
+  }
+
+  .hero-ascii-iframe {
+    max-width: 320px;
+  }
+
+.hero-definition__word {
     font-size: 2.25rem;
   }
 
