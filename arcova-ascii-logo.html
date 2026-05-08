@@ -11,7 +11,12 @@
   (function(){
     var el = document.getElementById('arcova-ascii');
     try {
-      if (window.parent.innerWidth < 768) el.style.zoom = '0.95';
+      if (window.parent.innerWidth < 768) {
+        var iw = window.innerWidth;
+        el.style.fontSize = (iw / 91) + 'px'; // scale to fit: 140 cols × ~0.65 char ratio = 91
+        el.style.lineHeight = '1ch'; // ties row height to actual rendered char width → circle
+        document.getElementById('arcova-ascii-container').style.padding = '0';
+      }
     } catch(e) {}
   })();
 </script>
