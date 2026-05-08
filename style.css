@@ -412,7 +412,7 @@ section[id] {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 360px;
   align-items: center;
   gap: 40px;
 }
