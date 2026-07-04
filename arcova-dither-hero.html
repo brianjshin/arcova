@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arcova Dither Hero</title>
+  <!--
+    Built with Paper Shaders — https://github.com/paper-design/shaders
+    Background: stock Dithering shader (simplex).
+    Globe: custom fragment shader using the same Bayer-dithering technique,
+    mounted via ShaderMount. The ring + arc come straight from the logo SVG
+    (rasterized to a mask texture), so the mark is pixel-exact.
+  -->
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #EF786F;
+    }
+
+    #bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    #globe {
+      position: absolute;
+      top: 50%;
+      right: clamp(16px, 5vw, 90px);
+      transform: translateY(-50%);
+      width: clamp(208px, 35vw, 448px);
+      aspect-ratio: 1 / 1;
+    }
+
+    /* On narrow screens the globe becomes a quiet backdrop behind the text */
+    @media (max-width: 700px) {
+      #globe {
+        right: 50%;
+        transform: translate(50%, -50%);
+        width: min(62vw, 336px);
+        opacity: 0.45;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="bg" aria-hidden="true"></div>
+  <div id="globe" aria-label="Arcova logo: dithered globe with ring and arc"></div>
+
+  <script type="module">
+    import {
+      ShaderMount,
+      ditheringFragmentShader,
+      DitheringShapes,
+      DitheringTypes,
+    } from 'https://cdn.jsdelivr.net/npm/@paper-design/shaders@0.0.77/+esm';
+
+    /* ---------- palette ---------- */
+    const CORAL      = [0.937, 0.471, 0.435, 1];   // #EF786F
+    const CORAL_DEEP = [0.855, 0.408, 0.376, 1];   // subtle darker coral for bg texture
+    const CREAM      = [1.0, 0.973, 0.945, 1];     // #FFF8F1 globe + ring
+
+    /* ---------- background: stock Paper Shaders Dithering (calm) ---------- */
+    new ShaderMount(
+      document.getElementById('bg'),
+      ditheringFragmentShader,
+      {
+        u_colorBack: CORAL,
+        u_colorFront: CORAL_DEEP,
+        u_shape: DitheringShapes.simplex,
+        u_type: DitheringTypes['4x4'],
+        u_pxSize: 3.5,
+        // sizing defaults (pattern)
+        u_fit: 0, u_scale: 1, u_rotation: 0,
+        u_offsetX: 0, u_offsetY: 0,
+        u_originX: 0.5, u_originY: 0.5,
+        u_worldWidth: 0, u_worldHeight: 0,
+      },
+      undefined,
+      0.35 /* speed: slow drift */
+    );
+
+    /* ---------- the logo mark, verbatim (orange_logo.svg) ---------- */
+    const LOGO_SVG = `<svg width="301" height="301" viewBox="0 0 301 301" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M264.846 52.6431C287.385 78.9552 301 113.138 301 150.5C301 233.619 233.619 301 150.5 301C113.157 301 78.991 287.399 52.6844 264.881C54.4544 261.088 56.2783 257.325 58.1526 253.592C82.6486 275.55 115.014 288.906 150.5 288.906C226.94 288.906 288.906 226.94 288.906 150.5C288.906 114.995 275.536 82.6145 253.557 58.1139C257.29 56.2386 261.053 54.4138 264.846 52.6431Z" fill="#FFFFFF"/>
+<path d="M235.258 41.0762C241.86 46.1972 247.985 51.9021 253.557 58.1139C169.257 100.464 100.502 169.244 58.1526 253.592C51.9395 248.023 46.2333 241.9 41.1104 235.301C84.643 152.541 152.54 84.6145 235.258 41.0762Z" fill="#FFFFFF"/>
+<path d="M150.5 0C187.26 0 220.941 13.1794 247.077 35.07C243.105 37.0167 239.165 39.0198 235.258 41.0762C211.839 22.91 182.433 12.0938 150.5 12.0938C74.0603 12.0938 12.0938 74.0603 12.0938 150.5C12.0938 182.453 22.9237 211.875 41.1104 235.301C39.055 239.209 37.0532 243.149 35.1074 247.121C13.1944 220.979 0 187.28 0 150.5C0 67.3811 67.3811 0 150.5 0Z" fill="#FFFFFF"/>
+</svg>`;
+
+    /* ---------- globe: custom shader, same dithering technique ---------- */
+    const globeFragmentShader = `#version 300 es
+precision mediump float;
+
+uniform float u_time;
+uniform vec2 u_resolution;
+uniform float u_pixelRatio;
+uniform float u_pxSize;
+uniform vec4 u_colorFront;
+uniform sampler2D u_logo;
+
+out vec4 fragColor;
+
+const int bayer8x8[64] = int[64](
+ 0, 32,  8, 40,  2, 34, 10, 42,
+48, 16, 56, 24, 50, 18, 58, 26,
+12, 44,  4, 36, 14, 46,  6, 38,
+60, 28, 52, 20, 62, 30, 54, 22,
+ 3, 35, 11, 43,  1, 33,  9, 41,
+51, 19, 59, 27, 49, 17, 57, 25,
+15, 47,  7, 39, 13, 45,  5, 37,
+63, 31, 55, 23, 61, 29, 53, 21
+);
+
+float getBayer8(vec2 uv) {
+  ivec2 pos = ivec2(fract(uv / 8.) * 8.);
+  return float(bayer8x8[pos.y * 8 + pos.x]) / 64.;
+}
+
+float hash21(vec2 p) {
+  p = fract(p * vec2(123.34, 456.21));
+  p += dot(p, p + 45.32);
+  return fract(p.x * p.y);
+}
+
+float valueNoise(vec2 p) {
+  vec2 i = floor(p), f = fract(p);
+  f = f * f * (3. - 2. * f);
+  float a = hash21(i), b = hash21(i + vec2(1., 0.));
+  float c = hash21(i + vec2(0., 1.)), d = hash21(i + vec2(1., 1.));
+  return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+
+void main() {
+  float t = .5 * u_time;
+
+  float pxSize = u_pxSize * u_pixelRatio;
+  vec2 pxSizeUV = (gl_FragCoord.xy - .5 * u_resolution) / pxSize;
+  vec2 pixelized = (floor(pxSizeUV) + .5) * pxSize;
+  float minSide = .5 * min(u_resolution.x, u_resolution.y);
+  vec2 p = pixelized / minSide;      // -1..1 across the square
+
+  /* logo units: ring outer radius = 1 */
+  vec2 q = p / .95;
+
+  /* --- the mark itself, sampled straight from the logo SVG --- */
+  vec2 logoUV = vec2(.5 + .5 * q.x, .5 - .5 * q.y);
+  float mask = 0.;
+  if (logoUV.x > 0. && logoUV.x < 1. && logoUV.y > 0. && logoUV.y < 1.) {
+    mask = smoothstep(.4, .6, texture(u_logo, logoUV).a);
+  }
+
+  /* --- dither shimmer drifting along the mark (lower-left -> upper-right) --- */
+  float s = dot(q, vec2(.7071));         // along the flow
+  float r = dot(q, vec2(-.7071, .7071)); // across the flow
+  vec2 fUV = vec2(s * 15. - .6 * u_time, r * 15.);
+  float n = .6 * valueNoise(fUV) + .4 * valueNoise(fUV * 2.3 + 7.1);
+  float markShape = mask * (.86 + .13 * n);
+
+  /* --- dithered globe filling the ring (SVG ring inner radius = .92) --- */
+  float Rs = .925;
+  vec2 sUV = q / Rs;
+  float d = 1. - dot(sUV, sUV);
+  float inSphere = step(0., d);
+  vec3 pos3 = vec3(sUV, sqrt(max(0., d)));
+  float lt = .8 * t;                 // rotation slowed by 20%
+  vec3 lightPos = normalize(vec3(cos(1.5 * lt), .8, sin(1.25 * lt)));
+  float sphere = (.5 + .5 * dot(lightPos, pos3)) * inSphere;
+  // cap below the mark's solidity + dim the rim so the outline stays distinct
+  sphere *= .82;
+  sphere *= 1. - .38 * smoothstep(.6, 1., length(sUV));
+
+  float shape = max(markShape, sphere);
+
+  /* --- ordered dithering, identical to the library --- */
+  float dithering = getBayer8(pxSizeUV) - .5;
+  float res = step(.5, shape + dithering);
+
+  // premultiplied output over transparent background
+  vec3 color = u_colorFront.rgb * u_colorFront.a * res;
+  float opacity = u_colorFront.a * res;
+  fragColor = vec4(color, opacity);
+}`;
+
+    /* rasterize the SVG to a crisp mask texture, then mount */
+    async function mountGlobe() {
+      const svgImg = new Image();
+      svgImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(LOGO_SVG);
+      await svgImg.decode();
+
+      const size = 1024;
+      const cnv = document.createElement('canvas');
+      cnv.width = cnv.height = size;
+      cnv.getContext('2d').drawImage(svgImg, 0, 0, size, size);
+
+      const maskImg = new Image();
+      maskImg.src = cnv.toDataURL('image/png');
+      await maskImg.decode();
+
+      new ShaderMount(
+        document.getElementById('globe'),
+        globeFragmentShader,
+        {
+          u_colorFront: CREAM,
+          u_pxSize: 2.2,
+          u_logo: maskImg,
+        },
+        undefined,
+        1 /* speed */
+      );
+    }
+    mountGlobe();
+  </script>
+</body>
+</html>
