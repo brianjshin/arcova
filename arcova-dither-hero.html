@@ -27,10 +27,11 @@
 
     #globe {
       position: absolute;
-      top: 50%;
+      /* center within the area below the fixed navbar, not the full hero height */
+      top: calc(50% + 35px);
       right: clamp(16px, 5vw, 90px);
       transform: translateY(-50%);
-      width: clamp(208px, 35vw, 448px);
+      width: clamp(187px, 31.5vw, 403px);
       aspect-ratio: 1 / 1;
     }
 
@@ -38,8 +39,8 @@
     @media (max-width: 700px) {
       #globe {
         right: 50%;
-        transform: translate(50%, -50%);
-        width: min(62vw, 336px);
+        transform: translate(50%, calc(-50% + 35px));
+        width: min(56vw, 302px);
         opacity: 0.45;
       }
     }
@@ -60,7 +61,8 @@
     /* ---------- palette ---------- */
     const CORAL      = [0.937, 0.471, 0.435, 1];   // #EF786F
     const CORAL_DEEP = [0.855, 0.408, 0.376, 1];   // subtle darker coral for bg texture
-    const CREAM      = [1.0, 0.973, 0.945, 1];     // #FFF8F1 globe + ring
+    const MARK_GREY  = [0.918, 0.918, 0.910, 1];   // #EAEAE8 site background grey — ring + arc
+    const GLOBE_WHITE = [1, 1, 1, 1];              // pure white — globe sphere, contrasts against the grey mark
 
     /* ---------- background: stock Paper Shaders Dithering (calm) ---------- */
     new ShaderMount(
@@ -97,7 +99,8 @@ uniform float u_time;
 uniform vec2 u_resolution;
 uniform float u_pixelRatio;
 uniform float u_pxSize;
-uniform vec4 u_colorFront;
+uniform vec4 u_colorMark;
+uniform vec4 u_colorGlobe;
 uniform sampler2D u_logo;
 
 out vec4 fragColor;
@@ -171,15 +174,21 @@ void main() {
   sphere *= .82;
   sphere *= 1. - .38 * smoothstep(.6, 1., length(sUV));
 
-  float shape = max(markShape, sphere);
-
   /* --- ordered dithering, identical to the library --- */
   float dithering = getBayer8(pxSizeUV) - .5;
-  float res = step(.5, shape + dithering);
+  float markRes = step(.5, markShape + dithering);
+  float sphereRes = step(.5, sphere + dithering);
+
+  // ring + arc (mark) sit on top of the globe fill; mark wins where both are on
+  vec4 layer = mix(
+    mix(vec4(0.), u_colorGlobe, sphereRes),
+    u_colorMark,
+    markRes
+  );
 
   // premultiplied output over transparent background
-  vec3 color = u_colorFront.rgb * u_colorFront.a * res;
-  float opacity = u_colorFront.a * res;
+  vec3 color = layer.rgb * layer.a;
+  float opacity = layer.a;
   fragColor = vec4(color, opacity);
 }`;
 
@@ -202,7 +211,8 @@ void main() {
         document.getElementById('globe'),
         globeFragmentShader,
         {
-          u_colorFront: CREAM,
+          u_colorMark: MARK_GREY,
+          u_colorGlobe: GLOBE_WHITE,
           u_pxSize: 2.2,
           u_logo: maskImg,
         },
