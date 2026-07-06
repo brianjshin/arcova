@@ -388,14 +388,13 @@ section[id] {
   z-index: 1;
   height: 100%;
   display: flex;
-  align-items: flex-end;
-  padding-bottom: 64px;
+  align-items: center;
   padding-top: 80px;
 }
 
 .hero-text {
   min-width: 0;
-  max-width: 680px;
+  max-width: 960px;
 }
 
 .hero-definition {
@@ -404,7 +403,7 @@ section[id] {
 
 .hero-definition__word {
   font-family: var(--font-primary);
-  font-size: 5rem;
+  font-size: clamp(3.5rem, 6vw, 6rem);
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--color-white);
@@ -412,16 +411,16 @@ section[id] {
 }
 
 .hero-definition__phonetic {
-  font-size: 1.125rem;
+  font-size: clamp(1.125rem, 1.4vw, 1.35rem);
   color: rgba(255, 255, 255, 0.65);
   font-weight: 300;
   font-style: italic;
-  margin-left: 8px;
+  margin-left: 10px;
   display: inline;
 }
 
 .hero-definition__pos {
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
   color: rgba(255, 255, 255, 0.65);
   font-style: italic;
   margin-left: 4px;
@@ -430,22 +429,23 @@ section[id] {
 
 .hero-definition__etymology {
   display: block;
-  font-size: 0.95rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
   color: rgba(255, 255, 255, 0.65);
-  margin-top: 8px;
-  margin-bottom: 24px;
+  margin-top: 12px;
+  margin-bottom: 28px;
   font-style: italic;
   border-left: 2px solid rgba(255, 255, 255, 0.5);
   padding-left: 12px;
+  white-space: nowrap;
 }
 
 .hero-subhead {
-  font-size: 1.375rem;
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
   color: rgba(255, 255, 255, 0.8);
-  max-width: 700px;
   line-height: 1.65;
-  margin-top: 20px;
+  margin-top: 24px;
   margin-bottom: 0;
+  white-space: nowrap;
 }
 
 
@@ -766,6 +766,150 @@ section[id] {
 
 
 /* ──────────────────────────────
+   Portfolio section
+   ────────────────────────────── */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 56px;
+  border-top: 1px solid var(--color-divider);
+}
+
+.portfolio-card {
+  aspect-ratio: 3 / 2;
+  display: grid;
+  place-items: center;
+  padding: 36px 40px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.portfolio-card:hover,
+.portfolio-card.active {
+  background: rgba(29, 29, 29, 0.04);
+}
+
+.portfolio-card__logo {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+}
+
+/* Company panel */
+.company-panel {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.45s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  margin-top: 0;
+}
+
+.company-panel.open {
+  max-height: 1200px;
+  opacity: 1;
+  margin-top: 40px;
+}
+
+.company-panel__inner {
+  border-top: 1px solid var(--color-divider);
+  padding: 40px 0 0;
+  position: relative;
+}
+
+.company-panel__close {
+  position: absolute;
+  top: 28px;
+  right: 0;
+  background: none;
+  border: none;
+  color: var(--color-muted);
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+  transition: color 0.2s ease;
+}
+
+.company-panel__close:hover {
+  color: var(--color-text);
+}
+
+.company-panel__sector {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
+  margin: 0 0 14px;
+}
+
+.company-panel__name {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1.1;
+  margin: 0 0 24px;
+}
+
+.company-panel__desc {
+  font-size: 1.05rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+  max-width: 70ch;
+  margin: 0 0 40px;
+}
+
+.company-panel__subhead {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 16px;
+}
+
+.company-panel__founders {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.company-panel__founders li {
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+.company-panel__founder-link {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease;
+}
+
+.company-panel__founder-link:hover {
+  color: var(--color-accent);
+}
+
+.company-panel__website {
+  display: inline-block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease;
+}
+
+.company-panel__website:hover {
+  color: var(--color-accent);
+}
+
+
+/* ──────────────────────────────
    Contact section — dark
    ────────────────────────────── */
 .contact-section {
@@ -909,12 +1053,17 @@ section[id] {
     height: 520px;
   }
 
-  .hero-content {
-    padding-bottom: 48px;
-  }
-
   .hero-definition__word {
     font-size: 2.75rem;
+  }
+
+  .hero-definition__etymology,
+  .hero-subhead {
+    white-space: normal;
+  }
+
+  .hero-subhead {
+    font-size: 1.15rem;
   }
 
   .pillar-grid {
@@ -937,6 +1086,15 @@ section[id] {
     grid-template-columns: repeat(2, 1fr);
     gap: 48px 24px;
     margin-top: 48px;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 40px;
+  }
+
+  .company-panel__name {
+    font-size: 1.75rem;
   }
 
   .contact-section .section-heading {
@@ -977,6 +1135,14 @@ section[id] {
 
   .team-grid {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-card {
+    aspect-ratio: 5 / 2;
   }
 
   .footer {

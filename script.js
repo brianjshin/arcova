@@ -174,3 +174,88 @@ if (bioPanel) {
   bioClose.addEventListener('click', closeBio);
 }
 
+
+/* ====== P O R T F O L I O  •  C O M P A N Y  •  P A N E L ====== */
+const portfolioData = {
+  saronic: {
+    sector: 'Defense Tech',
+    name: 'Saronic',
+    description: 'Saronic is building the next generation of autonomous maritime platforms for defense and commercial markets. By combining a proprietary autonomy stack with vertically integrated ship design and manufacturing, the company is restoring U.S. shipbuilding capacity at speed and scale.',
+    founders: [
+      { name: 'Dino Mavrookas', role: 'CEO', linkedin: 'https://www.linkedin.com/in/dino-mavrookas-190244127/' },
+      { name: 'Rob Lehman', role: 'CCO', linkedin: 'https://www.linkedin.com/in/rob-lehman-8387634/' },
+      { name: 'Doug Lambert', role: 'COO', linkedin: 'https://www.linkedin.com/in/doug-lambert-00463a1b/' },
+      { name: 'Vibhav Altekar', role: 'CTO', linkedin: 'https://www.linkedin.com/in/vibhavaltekar/' }
+    ],
+    website: 'https://www.saronic.com/'
+  }
+};
+
+const portfolioCards = document.querySelectorAll('.portfolio-card');
+const companyPanel = document.getElementById('company-panel');
+
+if (companyPanel) {
+  const companySector = companyPanel.querySelector('.company-panel__sector');
+  const companyName = companyPanel.querySelector('.company-panel__name');
+  const companyDesc = companyPanel.querySelector('.company-panel__desc');
+  const companyFounders = companyPanel.querySelector('.company-panel__founders');
+  const companyWebsite = companyPanel.querySelector('.company-panel__website');
+  const companyClose = companyPanel.querySelector('.company-panel__close');
+
+  function openCompany(card) {
+    const data = portfolioData[card.dataset.company];
+    if (!data) return;
+
+    portfolioCards.forEach(c => {
+      c.classList.remove('active');
+      c.setAttribute('aria-expanded', 'false');
+    });
+
+    card.classList.add('active');
+    card.setAttribute('aria-expanded', 'true');
+    companySector.textContent = data.sector;
+    companyName.textContent = data.name;
+    companyDesc.textContent = data.description;
+    companyFounders.innerHTML = data.founders.map(f =>
+      `<li><a href="${f.linkedin}" target="_blank" rel="noopener" class="company-panel__founder-link">${f.name}</a> &mdash; ${f.role}</li>`
+    ).join('');
+    companyWebsite.href = data.website;
+    companyPanel.classList.add('open');
+    companyPanel.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeCompany() {
+    portfolioCards.forEach(c => {
+      c.classList.remove('active');
+      c.setAttribute('aria-expanded', 'false');
+    });
+    companyPanel.classList.remove('open');
+    companyPanel.setAttribute('aria-hidden', 'true');
+  }
+
+  portfolioCards.forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+
+      if (card.classList.contains('active')) {
+        closeCompany();
+      } else {
+        openCompany(card);
+      }
+    });
+
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (card.classList.contains('active')) {
+          closeCompany();
+        } else {
+          openCompany(card);
+        }
+      }
+    });
+  });
+
+  companyClose.addEventListener('click', closeCompany);
+}
+
