@@ -602,9 +602,10 @@ section[id] {
    ────────────────────────────── */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 56px 32px;
-  margin-top: 56px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 56px 80px;
+  margin: 56px auto 0;
+  max-width: 780px;
 }
 
 .team-card {
@@ -772,7 +773,6 @@ section[id] {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 56px;
-  border-top: 1px solid var(--color-divider);
 }
 
 .portfolio-card {

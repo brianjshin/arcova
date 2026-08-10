@@ -88,15 +88,6 @@ const bioData = {
       'Eric is the author of The PayPal Wars, which won the Writers Notes Book Award. He has appeared on Bloomberg, CNN, and Fox News, and spoken at conferences around the world, including the World Knowledge Forum in Seoul, the Lang Di Fintech Conference in Shanghai, and the BlockFin Summit in San Francisco. Eric graduated with honors from Stanford University.'
     ]
   },
-  kenneth: {
-    name: 'Kenneth Lee',
-    role: 'Partner',
-    bio: [
-      'Kenneth Lee is CEO and founder of Kencoa Aerospace, a Tier-1 supplier to Boeing, Lockheed Martin, Airbus, and other major aerospace OEMs. He has built three successful aerospace manufacturing ventures across the U.S. and South Korea, establishing deep operational capabilities in precision machining, advanced materials, and complex assembly.',
-      'In 1995, Kenneth founded California Metal, an aerospace raw materials distributor serving top-tier OEMs and winning Boeing\'s Performance Excellence Award four consecutive years. In 2013, he founded Kencoa Aerospace Corporation in South Korea from a mobile container office with five employees, scaling to over 200 employees and becoming the first Korean SME to manufacture a complete flight-worthy aircraft — the KT-100 Air Force Trainer. Lee later acquired and transformed Heart of Georgia Metal Crafters, earning Lockheed Martin\'s Elite Supplier Performance Award as a top 2% global supplier.',
-      'Kenneth holds a BBA with high honors from Seoul National University and an MBA from USC Marshall School of Business.'
-    ]
-  },
   brian: {
     name: 'Brian Shin',
     role: 'Partner',
