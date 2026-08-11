@@ -1,30 +1,6 @@
 /* ──────────────────────────────
-   Fonts — Gilroy (local .otf)
+   Fonts — Gilroy (hero logo only)
    ────────────────────────────── */
-@font-face {
-  font-family: 'Gilroy';
-  src: url('Gilroy_font_family/Radomir Tinkov - Gilroy-Light.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('Gilroy_font_family/Radomir Tinkov - Gilroy-Regular.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('Gilroy_font_family/Radomir Tinkov - Gilroy-Medium.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
 @font-face {
   font-family: 'Gilroy';
   src: url('Gilroy_font_family/Radomir Tinkov - Gilroy-SemiBold.otf') format('opentype');
@@ -33,19 +9,96 @@
   font-display: swap;
 }
 
+/* ──────────────────────────────
+   Fonts — Uncut Sans (site-wide)
+   ────────────────────────────── */
 @font-face {
-  font-family: 'Gilroy';
-  src: url('Gilroy_font_family/Radomir Tinkov - Gilroy-Bold.otf') format('opentype');
+  font-family: 'Uncut Sans';
+  src: url('Uncut_Sans/UncutSans-Light.woff2') format('woff2'),
+       url('Uncut_Sans/UncutSans-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('Uncut_Sans/UncutSans-LightItalic.woff2') format('woff2'),
+       url('Uncut_Sans/UncutSans-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('Uncut_Sans/UncutSans-Regular.woff2') format('woff2'),
+       url('Uncut_Sans/UncutSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('Uncut_Sans/UncutSans-RegularItalic.woff2') format('woff2'),
+       url('Uncut_Sans/UncutSans-RegularItalic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('Uncut_Sans/UncutSans-Medium.woff2') format('woff2'),
+       url('Uncut_Sans/UncutSans-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('Uncut_Sans/UncutSans-MediumItalic.woff2') format('woff2'),
+       url('Uncut_Sans/UncutSans-MediumItalic.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('Uncut_Sans/UncutSans-Semibold.woff2') format('woff2'),
+       url('Uncut_Sans/UncutSans-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('Uncut_Sans/UncutSans-SemiboldItalic.woff2') format('woff2'),
+       url('Uncut_Sans/UncutSans-SemiboldItalic.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Uncut Sans';
+  src: url('Uncut_Sans/UncutSans-Bold.woff2') format('woff2'),
+       url('Uncut_Sans/UncutSans-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Gilroy';
-  src: url('Gilroy_font_family/Radomir Tinkov - Gilroy-ExtraBold.otf') format('opentype');
-  font-weight: 800;
-  font-style: normal;
+  font-family: 'Uncut Sans';
+  src: url('Uncut_Sans/UncutSans-BoldItalic.woff2') format('woff2'),
+       url('Uncut_Sans/UncutSans-BoldItalic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -64,7 +117,8 @@
   --color-white:    #ffffff;
   --color-divider:  #C8C8C6;
 
-  --font-primary:  'Gilroy', sans-serif;
+  --font-primary:  'Uncut Sans', sans-serif;
+  --font-hero:     'Gilroy', sans-serif;
 
   --space-section: 100px;
   --container-width: 76%;
@@ -287,12 +341,20 @@ section[id] {
   padding-bottom: var(--space-section);
 }
 
+.portfolio-section {
+  padding-bottom: 64px;
+}
+
+#team {
+  padding-top: 64px;
+}
+
 .section-label {
   display: block;
   font-family: var(--font-primary);
   font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin-bottom: 20px;
@@ -402,8 +464,8 @@ section[id] {
 }
 
 .hero-definition__word {
-  font-family: var(--font-primary);
-  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-family: var(--font-hero);
+  font-size: clamp(4rem, 7vw, 7rem);
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--color-white);
@@ -411,7 +473,7 @@ section[id] {
 }
 
 .hero-definition__phonetic {
-  font-size: clamp(1.125rem, 1.4vw, 1.35rem);
+  font-size: clamp(1.25rem, 1.7vw, 1.6rem);
   color: rgba(255, 255, 255, 0.65);
   font-weight: 300;
   font-style: italic;
@@ -420,7 +482,7 @@ section[id] {
 }
 
 .hero-definition__pos {
-  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
   color: rgba(255, 255, 255, 0.65);
   font-style: italic;
   margin-left: 4px;
@@ -429,9 +491,9 @@ section[id] {
 
 .hero-definition__etymology {
   display: block;
-  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  font-size: clamp(1.15rem, 1.5vw, 1.4rem);
   color: rgba(255, 255, 255, 0.65);
-  margin-top: 12px;
+  margin-top: 6px;
   margin-bottom: 28px;
   font-style: italic;
   border-left: 2px solid rgba(255, 255, 255, 0.5);
@@ -461,7 +523,7 @@ section[id] {
 /* Two-column layout: left editorial + right pillars */
 .approach-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 2fr;
   gap: 80px;
   align-items: start;
 }
@@ -476,7 +538,7 @@ section[id] {
   font-weight: 700;
   color: var(--color-text);
   line-height: 1.3;
-  max-width: 480px;
+  max-width: 640px;
   margin: 28px 0 0;
 }
 
@@ -564,7 +626,7 @@ section[id] {
   border: none;
   border-right: 1px solid var(--color-divider);
   border-radius: 0;
-  padding: 48px 40px;
+  padding: 48px 28px;
 }
 
 .pillar-card:first-child {
@@ -627,7 +689,7 @@ section[id] {
   font-family: var(--font-primary);
   font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   display: grid;
   place-items: center;
@@ -663,7 +725,7 @@ section[id] {
 .team-card__role {
   font-size: 0.7rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--color-accent);
   margin: 0 0 14px;
@@ -745,7 +807,7 @@ section[id] {
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.10em;
   color: var(--color-accent);
   margin: 0 0 24px;
 }
@@ -838,7 +900,7 @@ section[id] {
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.10em;
   color: var(--color-accent);
   margin: 0 0 14px;
 }
