@@ -588,6 +588,25 @@ section[id] {
   object-fit: contain;
 }
 
+img.approach-pillar__icon[src*="icon-korea"] {
+  width: 44px;
+  height: 44px;
+}
+
+.approach-pillar__icon--access {
+  width: 42px;
+  height: 42px;
+  position: relative;
+  top: -3px;
+}
+
+.approach-pillar__icon--execution {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  top: -2px;
+}
+
 .approach-pillar__title {
   font-size: 1.25rem;
   font-weight: 700;
